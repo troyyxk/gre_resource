@@ -3,6 +3,7 @@ from random import shuffle
 
 def main(file_loc):
     r_words = []
+    definations = []
 
     wb = open_workbook(file_loc)
     sheet = wb.sheets()[0]
@@ -39,6 +40,7 @@ def main(file_loc):
                 break
             elif res != "" and res != "y":
                 r_words.append(word)
+                definations.append(sheet.cell(i,1).value)
                 is_to_next = True
                 print("Added to review list")
         
@@ -50,6 +52,9 @@ def main(file_loc):
         for item in r_words:
             f.write("%s\n" % item)
 
+    with open('review_definition.txt', 'w') as f:
+        for item in definations:
+            f.write("%s\n" % item)
 
 if __name__=="__main__":
     main("./harsh.xlsx")
