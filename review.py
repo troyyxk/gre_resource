@@ -28,6 +28,9 @@ def main(file_loc):
             if res == "c":
                 is_to_next = False
                 print(len(r_words))
+            elif res == "f":
+                is_to_next = False
+                print(sheet.cell(i,1).value)
             elif res == "r":
                 is_to_next = False
                 print(number_of_rows - count)
