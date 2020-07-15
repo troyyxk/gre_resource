@@ -4,12 +4,23 @@ from random import shuffle
 def main(file_loc):
     r_words = []
     definations = []
+    r_definations = []
 
-    wb = open_workbook(file_loc)
-    sheet = wb.sheets()[0]
-
-    number_of_rows = sheet.nrows
+    input_file = input("x or t: ")
+    if input_file =="x":
+        wb = open_workbook(file_loc)
+        sheet = wb.sheets()[1]
+        words = sheet.col_values(0)
+        definations= sheet.col_values(1)
+    else:
+        f1 = open("review_list.txt", "r")
+        f2 = open("review_definition.txt", "r", encoding="utf-8")
+        words = f1.readlines()
+        definations = f2.readlines()
+        
+    number_of_rows = len(words)
     indexes = [i for i in range(number_of_rows)]
+
     if input("randome? (\"y\" for yes) ") == "y":
         shuffle(indexes)
 
@@ -18,7 +29,7 @@ def main(file_loc):
     for i in indexes:
         count += 1
         is_to_next = False
-        word  = sheet.cell(i,0).value
+        word  = words[i]
         if word =="":
             continue
         print(word)
@@ -31,7 +42,7 @@ def main(file_loc):
                 print(len(r_words))
             elif res == "f":
                 is_to_next = False
-                print(sheet.cell(i,1).value)
+                print(definations[i])
             elif res == "r":
                 is_to_next = False
                 print(number_of_rows - count)
@@ -40,7 +51,7 @@ def main(file_loc):
                 break
             elif res != "" and res != "y":
                 r_words.append(word)
-                definations.append(sheet.cell(i,1).value)
+                r_definations.append(definations[i])
                 is_to_next = True
                 print("Added to review list")
         
@@ -52,9 +63,11 @@ def main(file_loc):
         for item in r_words:
             f.write("%s\n" % item)
 
-    with open('review_definition.txt', 'w') as f:
-        for item in definations:
+    with open('review_definition.txt', 'w', encoding="utf-8") as f:
+        for item in r_definations:
+            print(item.encode('utf8'))
             f.write("%s\n" % item)
+
 
 if __name__=="__main__":
     main("./harsh.xlsx")
