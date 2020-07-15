@@ -9,14 +9,14 @@ def main(file_loc):
     input_file = input("x or t: ")
     if input_file =="x":
         wb = open_workbook(file_loc)
-        sheet = wb.sheets()[1]
+        sheet = wb.sheets()[0]
         words = sheet.col_values(0)
         definations= sheet.col_values(1)
     else:
         f1 = open("review_list.txt", "r")
         f2 = open("review_definition.txt", "r", encoding="utf-8")
-        words = f1.readlines()
-        definations = f2.readlines()
+        words = [x[0:-1] for x in f1.readlines()]
+        definations = [x[0:-1] for x in f2.readlines()]
         
     number_of_rows = len(words)
     indexes = [i for i in range(number_of_rows)]
@@ -29,7 +29,7 @@ def main(file_loc):
     for i in indexes:
         count += 1
         is_to_next = False
-        word  = words[i]
+        word = words[i]
         if word =="":
             continue
         print(word)
@@ -51,7 +51,7 @@ def main(file_loc):
                 break
             elif res != "" and res != "y":
                 r_words.append(word)
-                r_definations.append(definations[i])
+                r_definations.append(definations[i][0:15])
                 is_to_next = True
                 print("Added to review list")
         
@@ -65,7 +65,6 @@ def main(file_loc):
 
     with open('review_definition.txt', 'w', encoding="utf-8") as f:
         for item in r_definations:
-            print(item.encode('utf8'))
             f.write("%s\n" % item)
 
 
