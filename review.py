@@ -10,7 +10,7 @@ def main(file_loc):
         wb = open_workbook(file_loc)
         sheet = wb.sheets()[1]
         words = sheet.col_values(0)
-        definations= sheet.col_values(1)
+        definations = sheet.col_values(1)
     else:
         f1 = open("review_list.txt", "r")
         f2 = open("review_definition.txt", "r", encoding="utf-8")
