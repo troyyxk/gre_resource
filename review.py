@@ -8,7 +8,7 @@ def main(file_loc):
     input_file = input("x or t: ")
     if input_file =="x":
         wb = open_workbook(file_loc)
-        sheet = wb.sheets()[1]
+        sheet = wb.sheets()[3]
         words = sheet.col_values(0)
         definations = sheet.col_values(1)
     else:
@@ -20,7 +20,7 @@ def main(file_loc):
     number_of_rows = len(words)
     indexes = [i for i in range(number_of_rows)]
 
-    if input("randome? (\"y\" for yes) ") == "y":
+    if input("random? (\"y\" for yes) ") == "y":
         shuffle(indexes)
 
     count = 0
