@@ -1,4 +1,3 @@
-from xlrd import open_workbook
 from random import shuffle
 import PyPDF2
 from tika import parser

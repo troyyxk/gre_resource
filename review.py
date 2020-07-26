@@ -1,22 +1,23 @@
 from xlrd import open_workbook
 from random import shuffle
 
+
 def main(file_loc):
     r_words = []
     r_definations = []
 
     input_file = input("x or t: ")
-    if input_file =="x":
+    if input_file == "x":
         wb = open_workbook(file_loc)
-        sheet = wb.sheets()[3]
-        words = sheet.col_values(0)
-        definations = sheet.col_values(1)
+        sheet = wb.sheets()[4]
+        words = sheet.col_values(0)[0:100]
+        definations = sheet.col_values(1)[0:100]
     else:
         f1 = open("review_list.txt", "r")
         f2 = open("review_definition.txt", "r", encoding="utf-8")
         words = [x[0:-1] for x in f1.readlines()]
         definations = [x[0:-1] for x in f2.readlines()]
-        
+
     number_of_rows = len(words)
     indexes = [i for i in range(number_of_rows)]
 
@@ -29,7 +30,7 @@ def main(file_loc):
         count += 1
         is_to_next = False
         word = words[i]
-        if word =="":
+        if word == "":
             continue
         print(word)
         print("Know this one?")
@@ -53,7 +54,7 @@ def main(file_loc):
                 r_definations.append(definations[i].split('\n')[0])
                 is_to_next = True
                 print("Added to review list")
-        
+
         if isExit == True:
             break
         print("----------------------------")
