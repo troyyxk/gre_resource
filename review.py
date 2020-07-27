@@ -9,9 +9,9 @@ def main(file_loc):
     input_file = input("x or t: ")
     if input_file == "x":
         wb = open_workbook(file_loc)
-        sheet = wb.sheets()[4]
-        words = sheet.col_values(0)
-        definations = sheet.col_values(1)
+        sheet = wb.sheets()[2]
+        words = sheet.col_values(0)[100:200]
+        definations = sheet.col_values(1)[100:200]
     else:
         f1 = open("review_list.txt", "r")
         f2 = open("review_definition.txt", "r", encoding="utf-8")
