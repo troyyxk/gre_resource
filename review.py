@@ -9,7 +9,7 @@ def main(file_loc):
     input_file = input("x or t: ")
     if input_file == "x":
         wb = open_workbook(file_loc)
-        sheet = wb.sheets()[2]
+        sheet = wb.sheets()[0]
         words = sheet.col_values(0)
         definations = sheet.col_values(1)
     else:
