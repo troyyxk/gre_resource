@@ -1,3 +1,4 @@
+# pip3 install xlrd==1.2.0
 from xlrd import open_workbook
 from random import shuffle
 
@@ -54,6 +55,7 @@ def main(file_loc):
                 r_definations.append(definations[i].split('\n')[0])
                 is_to_next = True
                 print("Added to review list")
+            print(definations[i])
 
         if isExit == True:
             break
@@ -69,4 +71,4 @@ def main(file_loc):
 
 
 if __name__ == "__main__":
-    main("./harsh.xlsx")
+    main("./harsh.xls")
