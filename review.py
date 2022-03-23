@@ -71,4 +71,5 @@ def main(file_loc):
 
 
 if __name__ == "__main__":
+    print("for jianan :>")
     main("./harsh.xls")
